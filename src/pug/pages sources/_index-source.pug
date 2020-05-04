@@ -1,0 +1,154 @@
+.container-fluid(id="app-box" data-src="home")
+
+    .layout-wrap
+        .section-wrapper
+            section.main-section
+                -
+                    var post = {
+                        type:'news-card--over news-card--large',
+                        img:imgs[7],
+                        text:titles[7],
+                        theme:'card_over',
+                        cat:"1"
+                    }
+
+                include ../components/news-card
+            .right-side
+                -
+                        var post = {
+                            type:'news-card--over news-card--large',
+                            img:imgs[9],
+                            text:titles[1],
+                            theme:'card_over',
+                            cat:"1"
+                        }
+
+                include ../components/news-card
+                -for(let x = 1 ; x < 1 ; x++)
+                    -
+                        var post = {
+                            type:'news-card--over',
+                            img:imgs[x],
+                            text:titles[x],
+                            theme:'card_over',
+                            trend:"1",
+                            number:numbers[x]
+                        }
+
+                    include ../components/news-card
+            .right-side
+                -for(let x = 0 ; x < 2 ; x++)
+                    -
+                        var post = {
+                            type:'news-card--over',
+                            img:imgs[x],
+                            text:titles[x],
+                            theme:'card_over',
+                            cat:"1"
+                        }
+                    include ../components/news-card
+    section.mt20
+        a(href="#").main-title.mb20
+            .main-title__box
+                h1 Latest
+        .layout-wrap
+            .section-wrapper
+                section.main-section
+                    -
+                        var post = {
+                            type:'news-card--over news-card--large size-B',
+                            img:imgs[4],
+                            text:titles[4],
+                            theme:'card_over',
+                            cat:"1"
+                        }
+
+                    include ../components/news-card
+                
+                section.left-side
+                    -for(let x = 0 ; x < 3 ; x++)
+                        -
+                            var post = {
+                                type:'news-card--card news-card--switch',
+                                img:imgs[x],
+                                text:titles[x],
+                                theme:'card_over',
+                                cat:"2"
+                            }
+                        include ../components/news-card
+                section.left-side
+                    -for(let x = 0 ; x < 3 ; x++)
+                        -
+                            var post = {
+                                type:'news-card--card news-card--switch',
+                                img:imgs[x+3],
+                                text:titles[x+3],
+                                theme:'card_over',
+                                cat:"2"
+                            }
+
+                        include ../components/news-card
+    .main-title.mb20
+        h1 Videos 
+    section.dark-section
+        .section-wrapper
+            .main-section
+                -
+                    var post = {
+                        type:'news-card--over news-card--large',
+                        img:imgs[6],
+                        text:titles[6],
+                        theme:'card_video',
+                        
+                    }
+
+                include ../components/news-card
+            aside.left-side
+                -for(let x = 0 ; x < 4 ; x++)
+                    -
+                        var post = {
+                            type:'news-card--card news-card--switch dark-card',
+                            img:imgs[x],
+                            text:titles[x],
+                            theme:'card_video',
+                            trend:"0",
+                            number:numbers[x]
+                        }
+                    include ../components/news-card
+    
+    section.mt20
+        .main-title.mb20
+            h1 Relationships 
+        .layout-wrap
+            .section-wrapper
+                section.main-section
+                    -
+                        var post = {
+                            type:'news-card--over news-card--large size-A',
+                            img:imgs[8],
+                            text:titles[5],
+                            theme:'card_over',
+                            cat:"1"
+                        }
+
+                    include ../components/news-card
+
+
+                    
+                .left-side
+                    -for(let x = 0 ; x < 4 ; x++)
+                        -
+                            var post = {
+                                type:'news-card--card news-card--switch',
+                                img:imgs[x],
+                                text:titles[x],
+                                theme:'card_over',
+                                cat:"2"
+                            }
+                        include ../components/news-card
+            
+        
+
+    
+        
+
