@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Aljazeera';
+    src: url('fonts/Aljazeera/Al-Jazeera-Arabic-Regular.ttf');
+    
+}
+
+@font-face {
+    font-family: 'Aljazeera-b';
+    src: url('fonts/Aljazeera/Al-Jazeera-Arabic-Bold.ttf');
+    
+}
+
+@font-face {
+    font-family: 'Tajwal';
+    src: url('fonts/Tajwal/Tajawal-Regular.ttf');
+    
+}
+@font-face {
+    font-family: 'Tajwal-b';
+    src: url('fonts/Tajwal/Tajawal-Regular.ttf');
+    
+}
+@font-face {
+    font-family: 'Droid-kufi';
+    src: url('fonts/Droid-kufi/DroidKufi-Regular.ttf');
+    
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('fonts/Cairo/Cairo-Regular.ttf');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Cairo-b';
+    src: url('fonts/Cairo/Cairo-Bold.ttf');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'Bernhardt-lt';
+    src: url('fonts/Bernhardt CG/Bernhardt CG Light.ttf');
+    // font-weight: bold;
+}
+@font-face {
+    font-family: 'Bernhardt-bd';
+    src: url('fonts/Bernhardt CG/Bernhardt CG Bold.ttf');
+    // font-weight: bold;
+}
+
+
+body{
+    // //font-size:1rem;
+    font-family:$bodyFont;
+    // //line-height:1.2em;
+    // font-weight:700;
+
+}
+@each $num in 1,2,3,4,5,6{
+    h#{$num}{
+        font-family: $boldFont;        
+        // font-weight: 700;
+        -webkit-margin-before: 0px;
+        -webkit-margin-after: 0px;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+}
+h1{
+    @include rem(32);
+    // font-weight: 700;
+}
+h3{
+    @include rem(28);
+    // font-weight: 700;
+}
+h4{
+    @include rem(20);
+    // font-weight: 700;
+}
+
