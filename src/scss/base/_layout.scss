@@ -678,10 +678,14 @@ span.time{
 
     .scroll-mobile{
         @include mediaMax(1024px){
+            &::-webkit-scrollbar {
+            
+                height: 0px;
+              }
             display: block;
             white-space: nowrap;
             overflow: auto;
-            padding-bottom: 15px;
+            // padding-bottom: 15px;
             &>*{
                 display: inline-block;
                 white-space: normal;
