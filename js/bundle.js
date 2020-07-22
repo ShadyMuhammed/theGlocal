@@ -226,6 +226,22 @@ window.onload = function () {
   //     functions.fixed_icon();
   //   }
   // }
+  if (_helper2.default.page_type() == "section") {
+    // loadmore.loadCards();
+    floatSide();
+  }
+  if (_helper2.default.page_type() == "single") {
+    _functions2.default.social_sharing();
+    if (screen.width > 1024) {
+      floatIcons();
+      floatSide();
+    } else {
+      _functions2.default.fixed_icon();
+    }
+    // loadmore.loadNews();
+    // console.log(helper.page_type())
+
+  }
 
   _functions2.default.scroll_to_top();
 };
