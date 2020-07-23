@@ -85,34 +85,8 @@ gulp.task('pug', function () {
 	gulp.src(
 		[
 			'src/pug/index.pug',
-
-			// 'src/pug/single-new.pug',
+			'src/pug/single-new.pug',
 			'src/pug/section.pug',
-			// 'src/pug/cenimas.pug',
-			// 'src/pug/movies.pug',
-			// 'src/pug/programs.pug',
-			//  'src/pug/events.pug',
-			// 'src/pug/tv-guide.pug',
-			// 'src/pug/movies-section.pug',
-			// 'src/pug/series.pug',
-////// users
-			// 'src/pug/sign-up.pug',
-			// 'src/pug/login.pug',
-			// 'src/pug/forgot-password.pug',
-
-
-			// 'src/pug/search.pug',
-			// "src/pug/single-new.pug",
-			// "src/pug/sharedHeader.pug",
-			// 'src/pug/single-movie.pug',
-			// 'src/pug/single-program.pug',
-			// 'src/pug/single-series.pug',
-			// 'src/pug/single-person.pug',
-			// 'src/pug/single-cenima.pug',
-			// 'src/pug/single-event.pug',
-			// 'src/pug/single-channel.pug',
-			// 'src/pug/single-online-channel.pug',
-			// 'src/pug/single-radio-channel.pug',
 
 			// 'src/pug/about-us.pug',
 			// 'src/pug/404.pug',
