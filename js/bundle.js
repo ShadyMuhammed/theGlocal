@@ -213,6 +213,7 @@ window.onload = function () {
 
   _functions2.default.expand_and_collapse('.header__burger', '.header__nav', 'active', 'active');
   openSearchWindow();
+  _functions2.default.lazy_load();
   // functions.header_cover();
   // functions.header_nav();
   // notify.hide();
@@ -230,7 +231,8 @@ window.onload = function () {
     // loadmore.loadCards();
     floatSide();
   }
-  if (_helper2.default.page_type() == "single") {
+  if (_helper2.default.page_type() == "single" || _helper2.default.page_type() == "quiz") {
+
     _functions2.default.social_sharing();
     if (screen.width > 1024) {
       floatIcons();
@@ -238,6 +240,11 @@ window.onload = function () {
     } else {
       _functions2.default.fixed_icon();
     }
+    if (_helper2.default.page_type() == "quiz") {
+      var _answer = document.querySelector('.single-wrapper__result');
+      _answer ? _answer.scrollIntoView() : 0;
+    }
+
     // loadmore.loadNews();
     // console.log(helper.page_type())
 
@@ -1021,60 +1028,65 @@ functions.fixed_icon = function () {
 	}, false);
 };
 
-// functions.lazy_load = () => {
+functions.lazy_load = function () {
 
-// 	document.addEventListener("DOMContentLoaded", function () {
-// 		var lazyloadImages;
+	var $q = function $q(q, res) {
+		if (document.querySelectorAll) {
+			res = document.querySelectorAll(q);
+		} else {
+			var d = document,
+			    a = d.styleSheets[0] || d.createStyleSheet();
+			a.addRule(q, 'f:b');
+			for (var l = d.all, b = 0, c = [], f = l.length; b < f; b++) {
+				l[b].currentStyle.f && c.push(l[b]);
+			}a.removeRule(0);
+			res = c;
+		}
+		return res;
+	},
+	    addEventListener = function addEventListener(evt, fn) {
+		window.addEventListener ? window.addEventListener(evt, fn, false) : window.attachEvent ? this.attachEvent('on' + evt, fn) : this['on' + evt] = fn;
+	},
+	    _has = function _has(obj, key) {
+		return Object.prototype.hasOwnProperty.call(obj, key);
+	};
 
-// 		if ("IntersectionObserver" in window) {
-// 			lazyloadImages = document.querySelectorAll("[data-src]");
-// 			var imageObserver = new IntersectionObserver(function (entries, observer) {
-// 				entries.forEach(function (entry) {
-// 					if (entry.isIntersecting) {
-// 						var image = entry.target;
-// 						image.src = image.dataset.src;
-// 						// image.classList.remove("lazy");
-// 						imageObserver.unobserve(image);
-// 					}
-// 				});
-// 			});
+	function loadImage(el, fn) {
+		var img = new Image(),
+		    src = el.getAttribute('data-src');
+		img.onload = function () {
+			if (!!el.parent) el.parent.replaceChild(img, el);else el.src = src;
 
-// 			lazyloadImages.forEach(function (image) {
-// 				imageObserver.observe(image);
-// 			});
-// 		} else {
-// 			var lazyloadThrottleTimeout;
-// 			lazyloadImages = document.querySelectorAll(".news-card__img img");
+			fn ? fn() : null;
+		};
+		img.src = src;
+	}
 
-// 			function lazyload() {
-// 				if (lazyloadThrottleTimeout) {
-// 					clearTimeout(lazyloadThrottleTimeout);
-// 				}
+	function elementInViewport(el) {
+		var rect = el.getBoundingClientRect();
 
-// 				lazyloadThrottleTimeout = setTimeout(function () {
-// 					var scrollTop = window.pageYOffset;
-// 					lazyloadImages.forEach(function (img) {
-// 						if (img.offsetTop < (window.innerHeight + scrollTop)) {
-// 							img.src = img.dataset.src;
-// 							// img.classList.remove('lazy');
-// 						}
-// 					});
-// 					if (lazyloadImages.length == 0) {
-// 						document.removeEventListener("scroll", lazyload);
-// 						window.removeEventListener("resize", lazyload);
-// 						window.removeEventListener("orientationChange", lazyload);
-// 					}
-// 				}, 20);
-// 			}
+		return rect.top >= 0 && rect.left >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight);
+	}
 
-// 			document.addEventListener("scroll", lazyload);
-// 			window.addEventListener("resize", lazyload);
-// 			window.addEventListener("orientationChange", lazyload);
-// 		}
-// 	})
+	var images = new Array(),
+	    query = $q('img.lazy'),
+	    processScroll = function processScroll() {
+		for (var i = 0; i < images.length; i++) {
+			if (elementInViewport(images[i])) {
+				loadImage(images[i], function () {
+					images.splice(i, i);
+				});
+			}
+		};
+	};
+	// Array.prototype.slice.call is not callable under our lovely IE8 
+	for (var i = 0; i < query.length; i++) {
+		images.push(query[i]);
+	};
 
-
-// }
+	processScroll();
+	addEventListener('scroll', processScroll);
+};
 functions.social_sharing = function () {
 
 	var fb_share = document.querySelectorAll(".fb"),

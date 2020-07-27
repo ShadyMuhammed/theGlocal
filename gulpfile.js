@@ -87,6 +87,7 @@ gulp.task('pug', function () {
 			'src/pug/index.pug',
 			'src/pug/single-new.pug',
 			'src/pug/section.pug',
+			'src/pug/single-quiz.pug',
 
 			// 'src/pug/about-us.pug',
 			// 'src/pug/404.pug',
